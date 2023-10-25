@@ -30,9 +30,9 @@ void *mremap(void *old_address, size_t old_size, size_t new_size, int flags) {
 
 int munmap(void *addr, size_t length) {
     /* TODO: Implement munmap(). */
-    void *ans = (void *)syscall(11, addr, length);
-    if ((long)ans < 0) {
-        errno = -(long)ans;
+    int ans = syscall(11, addr, length);
+    if (ans < 0) {
+        errno = -ans;
         return -1;
     }
 
