@@ -38,10 +38,10 @@ void free(void *ptr) {
     struct mem_list *block = mem_list_find(ptr);
     munmap(block->start, block->len);
     mem_list_del(ptr);
-    return NULL;
 }
 
 void *realloc(void *ptr, size_t size) {
+    free(ptr);
     void *new_ptr = malloc(size);
     return new_ptr;
 }
